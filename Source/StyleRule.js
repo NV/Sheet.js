@@ -1,4 +1,6 @@
-var StyleDeclaration = require("./StyleDeclaration").StyleDeclaration
+if (typeof require != "undefined") {
+	var StyleDeclaration = require("./StyleDeclaration").StyleDeclaration
+}
 
 /**
  * @constructor

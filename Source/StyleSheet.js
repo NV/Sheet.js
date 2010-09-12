@@ -1,4 +1,6 @@
-var StyleRule = require("StyleRule").StyleRule
+if (typeof require != "undefined") {
+	var StyleRule = require("StyleRule").StyleRule
+}
 
 /**
  * @constructor

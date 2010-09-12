@@ -18,9 +18,18 @@ var UNDEF = {undefined:1}
 if (!exports.SheetParser) exports.SheetParser = {}
 
 /*<CommonJS>*/
-var combineRegExp = UNDEF[typeof require]
-	?	exports.combineRegExp
-	:	require('./sg-regex-tools').combineRegExp
+if (UNDEF[typeof require]) {
+	var combineRegExp = exports.combineRegExp
+	var StyleDeclaration = exports.StyleDeclaration
+	var StyleRule = exports.StyleRule
+	var StyleSheet = exports.StyleSheet
+} else {
+	combineRegExp = require('./sg-regex-tools').combineRegExp
+	StyleDeclaration = require("./StyleDeclaration").StyleDeclaration
+	StyleRule = require("./StyleRule").StyleRule
+	StyleSheet = require("./StyleDeclaration").StyleSheet
+}
+
 var SheetParser = exports.SheetParser
 /*</CommonJS>*/
 
@@ -82,6 +91,10 @@ CSS.parse = function(cssText){
 			rules[i].rules = rules[i].cssRules
 		}
 	}
+
+	// Have no idea how to distinguish StyleSheet, StyleRule, and StyleDeclaration.
+	// Assign only StyleDeclaration for now.
+	rules.__proto__ = StyleDeclaration.prototype
 	
 	return rules
 }

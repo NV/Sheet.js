@@ -98,7 +98,7 @@ StyleDeclaration.prototype = {
 
 // Inherit from Array to use splice and indexOf methods.
 // __proto__ isn't a part of ECMAScript 5 spec. It doesn't work in IE, even in IE9.
-StyleDeclaration.__proto__ = Array.prototype
+StyleDeclaration.prototype.__proto__ = Array.prototype
 
 
 if (typeof exports != "undefined") {
