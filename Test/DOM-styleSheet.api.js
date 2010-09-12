@@ -123,6 +123,43 @@ API ["DOM style attribute"] = function(newStyle){
 		
 	}
 	
+	I ["test getPropertyValue"] = function(){
+		var style = 'font-size: 12px; overflow: hidden';
+		var sheet = newStyle(style);
+
+		equal(sheet.style.getPropertyValue('font-size'), '12px');
+		equal(sheet.style.getPropertyValue('overflow'), 'hidden');
+	}
+
+	I ["test setProperty"] = function(){
+		var style = 'font-size: 12px; overflow: hidden';
+		var sheet = newStyle(style);
+
+		sheet.style.setProperty('font-size', '14px');
+		sheet.style.setProperty('overflow', 'auto');
+		equal(sheet.style.getPropertyValue('font-size'), '14px');
+		equal(sheet.style.getPropertyValue('overflow'), 'auto');
+	}
+
+	I ["test removeProperty"] = function(){
+		var style = 'color:green; font-size: 12px';
+		var sheet = newStyle(style);
+
+		equal(sheet.style.length, 2);
+		equal(sheet.style.removeProperty("color"), 'green');
+		equal(sheet.style.length, 1);
+		equal(sheet.style.removeProperty("font-size"), '12px');
+		equal(sheet.style.length, 0);
+	}
+
+	I ["test item"] = function(){
+		var style = 'font-size: 12px; overflow: hidden';
+		var sheet = newStyle(style);
+
+		equal(sheet.style.item(0), 'font-size');
+		equal(sheet.style.item(1), 'overflow');
+	}
+
 	return I;
 };
 
